@@ -1,0 +1,41 @@
+---
+title: "Final_project"
+author: "Hanyu Song"
+date: "`r Sys.Date()`"
+output: html_document
+---
+
+# Introduction
+
+I plan to use a Kaggle dataset containing comprehensive information on air quality and its impact on public health. It includes 5,811 records with the following variables: AQI; concentrations of pollutants, such as PM2.5, PM10, NO₂, SO₂, and O₃; weather conditions, such as temperature, humidity, and wind speed; and health impact metrics, such as respiratory and cardiovascular cases and hospital admissions. The target variable is the health impact class, which categorizes the severity of health impacts into five levels based on an overall health impact score. In my R Markdown report, I will analyze the correlation between air pollution and hospital admissions and health outcomes. I will also visualize the distribution of pollutants under different health impact categories and potentially build predictive models to classify health risk levels.
+
+# Data Set
+```{r, load_data}
+
+here::i_am("final_project.Rmd")
+data <- read.csv(here::here("data", "air_quality_health_impact_data.csv"))
+
+```
+
+# Table
+```{r, table}
+
+library(knitr)
+
+summary_table <- readRDS(here::here("output", "01_table.rds"))
+kable(summary_table, caption = "Descriptive Statistics of Air Quality Variables")
+
+```
+
+This table presents the descriptive statistics of the major air quality variables, including the Air Quality Index (AQI), particulate matter (PM) with diameters of 10 µm and smaller (PM10) and 2.5 µm and smaller (PM2.5), nitrogen dioxide (NO₂), sulfur dioxide (SO₂), and ozone (O₃). On average, the AQI is approximately 248, ranging from nearly 0 to almost 500. This indicates that the dataset covers both clean and highly polluted conditions. PM10 and O₃ have relatively high mean values (approximately 149 and 59, respectively), while SO₂ has the lowest mean concentration (approximately 49). The standard deviations suggest that pollutant levels vary considerably, particularly for the AQI.
+
+# Figure
+```{r, figure, fig.width=6, fig.height=4}
+
+library(ggplot2)
+p <- readRDS(here::here("output", "02_figure.rds"))
+p
+
+```
+
+This figure illustrates the relationship between PM2.5 concentration and Health Impact Score. Each point represents an observation in the dataset. Generally, higher PM2.5 levels are associated with higher health impact scores. The red regression line indicates a positive trend, suggesting that as PM2.5 concentrations increase, so does the severity of health impacts. 
