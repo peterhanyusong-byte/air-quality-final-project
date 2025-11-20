@@ -13,6 +13,11 @@ output/02_figure.rds: code/02_figure.R data/air_quality_health_impact_data.csv
 final_project.html: final_project.Rmd output/01_table.rds output/02_figure.rds
 	Rscript -e "rmarkdown::render('final_project.Rmd')"
 
+# Install all required packages
+.PHONY: install
+install:
+	Rscript -e "renv::restore()"
+
 # Optional cleanup
 .PHONY: clean
 clean:
