@@ -21,4 +21,10 @@ install:
 # Optional cleanup
 .PHONY: clean
 clean:
-	rm -f output/*.rds figures/*.png final_project.html
+	rm -rf output/*.rds figures/*.png report/final_project.html report/final_project_files final_project_files final_project.html
+
+# Run docker
+.PHONY: docker-run
+docker-run:
+	mkdir -p report
+	docker run --rm -v $(PWD)/report:/project/report peterhanyusong/finalproject

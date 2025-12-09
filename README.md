@@ -46,3 +46,35 @@ make install
 ```
 
 This will restore all required packages using the renv environment recorded in renv.lock.
+
+## Docker image
+
+To build the Docker image locally, run:
+
+``` bash
+docker build -t peterhanyusong/finalproject .
+```
+
+The Docker image for this project is available publicly on DockerHub:
+
+<https://hub.docker.com/repository/docker/peterhanyusong/finalproject>
+
+To pull the image, run:
+
+``` bash
+docker pull peterhanyusong/finalproject
+```
+
+The Makefile includes a `docker-run` target that automatically runs the container and retrieves the compiled report.
+
+From the project root directory, run:
+
+``` bash
+make docker-run
+```
+
+This will:
+
+1. Build the report inside the Docker container
+2. Mount a local folder named `report/`
+3. Save the compiled report (`final_project.html`) into the `report/` directory on your machine

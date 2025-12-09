@@ -21,7 +21,7 @@ saveRDS(p, file = here::here("output", "02_figure.rds"))
 
 # Save as PNG
 ggsave(
-  filename = here::here("figures", "02_figure.png"),
+  filename = here::here("figure", "02_figure.png"),
   plot = p,
   width = 8, height = 6, dpi = 300
 )
